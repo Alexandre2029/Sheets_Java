@@ -1,7 +1,5 @@
 public class calculos {
 
-
-
     public static String calcualrNaf(int media){
 
         String naf = Integer.toString((100 - media ));
