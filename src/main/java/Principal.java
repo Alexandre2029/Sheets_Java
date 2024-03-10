@@ -12,10 +12,11 @@ import java.util.List;
 
 public class Principal {
     private SheetsCredential sheetsCredential;
+    private ServiceBuilder serviceBuilder ;
 
-    public static void main(String... args) throws IOException, GeneralSecurityException {
+    public static void main(String... args) throws Exception {
 
-        final NetHttpTransport HTTP_TRANSPORT = GoogleNetHttpTransport.newTrustedTransport();
+
         final String spreadsheetId = "1T5RJguZdYc_OGCud0eTlv0vkU8doZizyABBYbajEGRk";
         final String range = "engenharia_de_software!A4:I27";
         String situacao ;
@@ -23,18 +24,15 @@ public class Principal {
         int totalAulas = 0;
 
 
-        Sheets service = new Sheets.Builder(HTTP_TRANSPORT,SheetsCredential.getJsonFactory(),
-                SheetsCredential.getCredentials(HTTP_TRANSPORT))
-                .setApplicationName(SheetsCredential.getApplicationName())
-                .build();
+        Sheets service = ServiceBuilder.buildSheetsService();
 
 
         ValueRange response = service.spreadsheets().values()
                 .get(spreadsheetId, range)
                 .execute();
 
-
         List<List<Object>> values = response.getValues();
+        
 
         // OBTENDO TOTAL DE AULAS
         for (List row : values ) {
