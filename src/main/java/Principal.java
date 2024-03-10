@@ -11,28 +11,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Principal {
-    private SheetsCredential sheetsCredential;
-    private ServiceBuilder serviceBuilder ;
-
     public static void main(String... args) throws Exception {
-
 
         final String spreadsheetId = "1T5RJguZdYc_OGCud0eTlv0vkU8doZizyABBYbajEGRk";
         final String range = "engenharia_de_software!A4:I27";
-        String situacao ;
-        String notaParaAprovacao ;
         int totalAulas = 0;
 
 
         Sheets service = ServiceBuilder.buildSheetsService();
 
-
-        ValueRange response = service.spreadsheets().values()
-                .get(spreadsheetId, range)
-                .execute();
+        ValueRange response = SheetsValues.GetValues(service, spreadsheetId,range);
 
         List<List<Object>> values = response.getValues();
-        
+
 
         // OBTENDO TOTAL DE AULAS
         for (List row : values ) {
@@ -42,8 +33,8 @@ public class Principal {
 
         List<List<Object>> valoresAdicionar = new ArrayList<>();
 
-
         for (List row : values ) {
+            String notaParaAprovacao ;
 
             int faltas = Integer.parseInt((String) row.get(2));
             int p1 = Integer.parseInt((String) row.get(3));
@@ -52,8 +43,7 @@ public class Principal {
 
             int media = (p1 + p2 + p3)/3;
 
-
-            situacao = calculos.calculaSituacao(media, faltas, totalAulas);
+          String  situacao = calculos.calculaSituacao(media, faltas, totalAulas);
 
             if (situacao.equals("Exame final")) {
                 notaParaAprovacao = calculos.calcualrNaf(media);
@@ -67,14 +57,9 @@ public class Principal {
         data.add(new ValueRange()
                 .setRange("G4").setValues(valoresAdicionar));
 
-        BatchUpdateValuesRequest batchBody = new BatchUpdateValuesRequest()
-                .setValueInputOption("USER_ENTERED")
-                .setData(data);
-        BatchUpdateValuesResponse batchResult = service.spreadsheets().values()
-                .batchUpdate(spreadsheetId, batchBody)
-                .execute();
+        SheetsValues.setValues(data,service,spreadsheetId);
+
+
     }
-
-
 
 }
