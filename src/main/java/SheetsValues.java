@@ -14,12 +14,10 @@ public class SheetsValues {
                 .get(spreadsheetId, range)
                 .execute();
 
-        List<List<Object>> values = response.getValues();
-
         return response;
     }
 
-    public static BatchUpdateValuesResponse setValues(List<ValueRange> data,Sheets service,String spreadsheetId) throws IOException {
+    public static void setValues(List<ValueRange> data,Sheets service,String spreadsheetId) throws IOException {
 
         BatchUpdateValuesRequest batchBody = new BatchUpdateValuesRequest()
                 .setValueInputOption("USER_ENTERED")
@@ -28,7 +26,15 @@ public class SheetsValues {
                 .batchUpdate(spreadsheetId, batchBody)
                 .execute();
 
-        return batchResult;
+    }
+
+    public static int getTotalAulas(List<List<Object>> values){
+        var totalAulas = 0;
+        for (List row : values ) {
+            totalAulas = Integer.parseInt((String) row.get(8));
+            break;
+        }
+        return totalAulas;
     }
 
 }

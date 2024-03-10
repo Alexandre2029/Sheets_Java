@@ -6,6 +6,7 @@ public class calculos {
         return naf;
 
     }
+
     public static String calculaSituacao(int media, int faltas, int totalAulas){
         String situacao;
         if(faltas > 0.25* totalAulas){
