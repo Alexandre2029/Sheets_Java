@@ -9,10 +9,10 @@ public class Principal {
 
         final String spreadsheetId = "1T5RJguZdYc_OGCud0eTlv0vkU8doZizyABBYbajEGRk";
         final String range = "engenharia_de_software!A4:I27";
-        
-        Sheets service = ServiceBuilder.buildSheetsService();
-        ValueRange response = SheetsValues.GetValues(service, spreadsheetId,range);
 
+        Sheets service = ServiceBuilder.buildSheetsService();
+
+        ValueRange response = SheetsValues.GetValues(service, spreadsheetId,range);
 
         List<List<Object>> values = response.getValues();
 
@@ -37,13 +37,10 @@ public class Principal {
 
             valoresAdicionar.add(List.of(situacao, notaParaAprovacao)); }
 
-        List<ValueRange> data = new ArrayList<>();
+            List<ValueRange> data = new ArrayList<>();
+            data.add(new ValueRange().setRange("G4").setValues(valoresAdicionar));
 
-        data.add(new ValueRange()
-                .setRange("G4").setValues(valoresAdicionar));
-
-        SheetsValues.setValues(data,service,spreadsheetId);
+            SheetsValues.setValues(data,service,spreadsheetId);
 
     }
-
 }
