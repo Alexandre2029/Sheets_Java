@@ -1,7 +1,7 @@
-Sobre o Projeto
+# Sobre o Projeto
 Este projeto consiste em um programa Java que utiliza a API do Google Sheets para automatizar o processamento de dados relacionados ao desempenho dos alunos em uma disciplina específica.
 
-Funcionalidades
+# Funcionalidades
 Main: Esta classe principal coordena a execução do programa, interagindo com outras classes para ler os dados da planilha, calcular estatísticas e atualizar os resultados na planilha.
 
 ServiceBuilder: Esta classe é responsável por construir o serviço do Google Sheets necessário para interagir com a API do Google Sheets.
