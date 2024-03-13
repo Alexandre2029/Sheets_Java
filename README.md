@@ -9,3 +9,5 @@ ServiceBuilder: Esta classe é responsável por construir o serviço do Google S
 SheetsValues: Esta classe contém métodos para obter os valores da planilha, calcular o total de aulas e definir novos valores na planilha.
 
 calculations: Esta classe contém métodos para calcular a situação do aluno com base em suas notas e faltas, além de calcular a nota necessária para aprovação em caso de exame final.
+
+SheetsCredential: Esta classe encapsula a lógica para obter e gerenciar as credenciais de acesso à API do Google Sheets, facilitando a autenticação e autorização necessárias para interagir com as planilhas do Google Sheets.
