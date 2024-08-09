@@ -1,5 +1,5 @@
 # Sobre o Projeto
-Este projeto consiste em um programa Java que utiliza a API do Google Sheets para automatizar o processamento de dados relacionados ao desempenho dos alunos em uma disciplina específica.
+Este projeto consiste em um programa Java que utiliza a API do Google Sheets para automatizar o processamento de calculo de media dos alunos com base em uma planilha com notas e numero de faltas dos alunos.
 
 # Funcionalidades
 Main: Esta classe principal coordena a execução do programa, interagindo com outras classes para ler os dados da planilha, calcular estatísticas e atualizar os resultados na planilha.
